@@ -2,9 +2,10 @@
          pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../pages/template/header.jsp" />
+<div class="container-fluid">
 <div class="card-body">
     <div class="card-body">
-        <a style="float: right; margin-top: -5px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CnfNovoFilme"> <i class="fa fa-plus"></i> Adicionar</a> 
+        <a style=" margin: 15px; " class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CnfNovoFilme"> <i class="fa fa-plus"></i> Adicionar Novo Filme</a> 
     </div>
     <div class="table-responsive modal-body">
         <table class="table table-striped">
@@ -23,8 +24,8 @@
                         <td>${f.nome}</td>
                         <td>${f.descricao}</td>
                         <td>${f.genero}</td>                    
-                        <td> <a href="" class="btn btn-primary btn-xs" data-target ="#CnfEditFilme${f.id}" data-toggle="modal" title="Editar"> <span class="glyphicon glyphicon-pencil"> </span> </a></td>
-                        <td> <a href="" class="btn btn-danger btn-xs subgp" data-target ="#CnfExcluirFilme${f.id}" data-toggle="modal" title="Excluir"> <span class="glyphicon glyphicon-remove"> </span> </a></td>         
+                        <td> <a href="" class="btn btn-primary btn-md" data-target ="#CnfEditFilme${f.id}" data-toggle="modal" title="Editar"> <span class="glyphicon glyphicon-pencil"> </span> </a></td>
+                        <td> <a href="" class="btn btn-danger btn-md subgp" data-target ="#CnfExcluirFilme${f.id}" data-toggle="modal" title="Excluir"> <span class="glyphicon glyphicon-remove"> </span> </a></td>         
                     </tr>
                     <!--  Editar Filme -->
                 <div class="modal" tabindex="-1" id="CnfEditFilme${f.id}" role="dialog">
@@ -51,8 +52,15 @@
                                         <input type="text" placeholder="" name="descricao"  value ="${f.descricao}" class="form-control" required="required"/>
                                     </div>
                                     <div class="form-group">
-                                        <b><p>Genero</p></b>
-                                        <input type="text" placeholder="" name="genero"  value ="${f.genero}" class="form-control" required="required"/>
+                                        <label>Genero</label>
+                                        <!--<input type="text" placeholder="genero" name="genero" class="form-control" required="required"/> -->
+                                        <select name="genero" class="form-control" required="required"/>
+                                        <option value="acao">Ação</option>
+                                        <option value="terror">Terror</option>
+                                        <option value="suspense">Suspense</option>
+                                        <option value="fantasia">Fantasia</option>
+                                        </select>
+                                        <br/>
                                     </div>
                                     <div class="form-group">
                                         <b><p>Imagem</p></b>
@@ -69,24 +77,26 @@
                 </div>
                 <!--  FIM editar Filme-->
 
+  
                 <!--  Excluir Filme -->
                 <div class="modal" tabindex="-1" id="CnfExcluirFilme${f.id}" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Excluir Filme</h5>
+                                <h4 class="modal-title">Excluir Filme</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <h3>Confirma a exclusão deste filme? </h3>
                                 <form class="form-group" action="excluirFilme" method="post">
-                                    <input type="text" placeholder="" name="id"  value ="${f.id}" class="form-control" hidden="" required="required" />
-                                    <h5>Código: ${f.id} - Nome: ${f.nome}</h5>
+                                    <input type="hidden" placeholder=""  name="id"  value ="${f.id}" class="form-control"  required="required" />
+                                    <h4><b>Código:</b> ${f.id} - <b>Nome:</b> ${f.nome}</h4>
                                     <br/>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">Excluir</button>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
                             </div>
                             </form>
                         </div>
@@ -99,7 +109,7 @@
     </div>
     <br/>
 
-
+</div>
 
 </div>
 
@@ -128,17 +138,17 @@
                         <label>Descricao</label>
                         <input type="text" placeholder="descricao" name="descricao" class="form-control" required="required"/>
                     </div>
-                    <div class="form-group">
-                        <label>Genero</label>
-                        <input type="text" placeholder="genero" name="genero" class="form-control" required="required"/>
-                        <!-- <select class="form-control" id="genero" name="genero">
-                        <!-- <c:forEach var="g" items="${genero}">
-                             <option>${g}</option>
-                        </c:forEach> -->
-
-                        </select>
-                        <br/>
-                    </div>
+                                    <div class="form-group">
+                                        <label>Genero</label>
+                                        <!--<input type="text" placeholder="genero" name="genero" class="form-control" required="required"/> -->
+                                        <select name="genero" class="form-control" required="required"/>
+                                        <option value="acao">Ação</option>
+                                        <option value="terror">Terror</option>
+                                        <option value="suspense">Suspense</option>
+                                        <option value="fantasia">Fantasia</option>
+                                        </select>
+                                        <br/>
+                                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Salvar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -146,5 +156,6 @@
             </div>
         </div>
     </div>
+    
 
     <c:import url="../pages/template/footer.jsp" />

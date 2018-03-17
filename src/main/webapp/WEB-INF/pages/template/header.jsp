@@ -7,6 +7,8 @@
     
     
     <link  href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet" />
+
+
     
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script  src="<c:url value="/static/js/bootstrap.min.js"/>" ></script>
@@ -24,16 +26,36 @@ $(document).ready(function() {
   $('.li.active').removeClass('active');
   $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
 });
-
+  
 </script>
+<style>
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        background-color: #222222;
+    }  
+    .navbar-default .navbar-nav>li>a{
+        color: #fff;
+        font-size: 1.3em;
+    }
+    .navbar-default .navbar-brand{
+        color: #fff;
+        font-size: 1.5em;
+    }
+    .navbar-default .navbar-nav>li>a:hover{
+        color: #F0776C;
+    }
+    .navbar-default .navbar-header>a:hover{
+         color: #F0776C;
+    }
+
+</style>
 <title>Webflix Unisal</title>
 </head>
 <body>
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container-fluid">
-	<div class="row">
+<div class="container-fluid" >
+    <div class="row" id="menu">
 		<div class="col-md-12">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
@@ -47,37 +69,16 @@ $(document).ready(function() {
 					<ul class="nav navbar-nav">
                                                 
 						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle " data-toggle="dropdown">Filmes<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="<c:url value='/listaFilmes'></c:url>">Lista de Filmes</a>
-								</li>
-								
-                                                                <li>
-									<a  href="<c:url value='/editarFilme'></c:url>">Adicionar Filmes</a>
-								</li>
-								
-							</ul>
+							 <a href="<c:url value='/listaFilmes'></c:url>" >Filmes</a>
 						</li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-                                            <li class="dropdown ">
-                                                <a href="<c:url value='/usuario'></c:url>" class="dropdown-toggle " data-toggle="dropdown">Usuarios<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a  href="<c:url value='/listaUsuarios'></c:url>">Lista de usuarios</a>
-								</li>
-								<li>
-									<a href="<c:url value='/salvarUsuario'></c:url>">Adicionar Usuarios</a>
-								</li>
-								
-							</ul>
-						</li>
                                             <li>
-                                            
-                                               
-					<a href="<c:url value='/logout'></c:url>">Logout</a>
+                                                <a href="<c:url value='/listaUsuarios'></c:url>">Usuarios</a>
+                                            </li>
+                                            <li>          
+                                                <a href="<c:url value='/logout'></c:url>">Logout</a>
                                             </li>
 						
 					</ul>
@@ -95,13 +96,6 @@ $(document).ready(function() {
         
     </div>
 </div>
-<style>
-    .page{
-        margin: 20px 8% 20px 8%
-    }
-</style>
-        <div class="container-fluid page">
-            
-            <div class="row">
+
 
          

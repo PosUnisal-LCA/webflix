@@ -50,7 +50,7 @@ public class FilmeSaveController extends HttpServlet{
 		}
 				
 		req.setAttribute("filmes", filmes);
-		req.getRequestDispatcher(Constantes.raizPages + "addFilme.jsp").forward(req, resp);
+		req.getRequestDispatcher(Constantes.raizPages + "filme.jsp").forward(req, resp);
 	}
         
       /*   @Override

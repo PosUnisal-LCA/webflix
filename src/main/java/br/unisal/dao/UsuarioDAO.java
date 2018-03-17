@@ -38,7 +38,7 @@ public class UsuarioDAO extends GenericDAO implements DAOInterface<Usuario> {
 	}
 
 	public void update(Usuario t) throws ClassNotFoundException, SQLException, IOException {
-		String sql = "update usuario set nome = ?, email = ?, login = ?, senha = ? from usuario";
+		String sql = "update usuario set nome = ?, email = ?, login = ?, senha = ? where id = ?";
 		PreparedStatement ps = null;
 		try {
 			ps = getConnectionPool().prepareStatement(sql);
@@ -55,9 +55,11 @@ public class UsuarioDAO extends GenericDAO implements DAOInterface<Usuario> {
 		}
 	}
 
+
 	public void insert(Usuario t) throws ClassNotFoundException, SQLException, IOException {
-		String sql = "insert into usuario (nome, email, login, senha, uuid) values (?,?,?,?,?)";
+                String sql = "insert into usuario (nome, email, login, senha, uuid) values (?,?,?,?,?)";
 		PreparedStatement ps = null;
+                
 		try {
 			ps = getConnectionPool().prepareStatement(sql);
 			
@@ -71,6 +73,33 @@ public class UsuarioDAO extends GenericDAO implements DAOInterface<Usuario> {
 			
 		} finally {
 			DbUtil.getInstance().closeQuietly(ps);
+		}
+	}
+        
+        public boolean insertLogin(Usuario t) throws ClassNotFoundException, SQLException, IOException {
+		boolean loginExiste = false;
+                loginExiste = findByNomeLogin(t.getLogin());
+                if (loginExiste == false) {
+                    return false;
+                }
+            
+                String sql = "insert into usuario (nome, email, login, senha, uuid) values (?,?,?,?,?)";
+		PreparedStatement ps = null;
+                
+		try {
+			ps = getConnectionPool().prepareStatement(sql);
+			
+			ps.setString(1, t.getNome());
+			ps.setString(2, t.getEmail());
+			ps.setString(3, t.getLogin());
+			ps.setString(4, t.getSenha());
+			ps.setString(5, t.getUuid());
+			
+			ps.execute();
+			
+		} finally {
+			DbUtil.getInstance().closeQuietly(ps);
+                        return true;
 		}
 	}
 
@@ -114,7 +143,50 @@ public class UsuarioDAO extends GenericDAO implements DAOInterface<Usuario> {
 
 		return usuario;
 	}
+        
+        
+        public boolean findByLogin(String login, String senha) throws ClassNotFoundException, SQLException, IOException {
+		String sql = "select login, senha from usuario where login = ? and senha = ?";
 
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = getConnectionPool().prepareStatement(sql);
+			ps.setString(1,login);
+                        ps.setString(2,senha);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				return true;
+			}
+		} finally {
+			DbUtil.getInstance().closeQuietly(ps, rs);
+		}
+
+		return false;
+	}
+        public boolean findByNomeLogin(String login) throws ClassNotFoundException, SQLException, IOException {
+		String sql = "select login from usuario where login = ? ";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = getConnectionPool().prepareStatement(sql);
+			ps.setString(1,login);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				return false;
+			}
+		} finally {
+			DbUtil.getInstance().closeQuietly(ps, rs);
+		}
+
+		return true;
+	}
+        
+        
+        
 	private Usuario castObjectToModel(Object[] obj) {
 		Usuario usuario = new Usuario();
 		usuario.setId((Long) obj[0]);

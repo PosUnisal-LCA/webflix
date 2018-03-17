@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -104,22 +105,96 @@
                 background: linear-gradient(to left, #eee, #eee);
                 font-family: "Roboto", sans-serif;
                 -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;      
+                -moz-osx-font-smoothing: grayscale;
+                background-image: url("img_login/login.jpg");
+            }
+            img{
+                width: 100%;
+                
+            }
+            .form {
+                background-color: rgba(255,255,255,0.7)
             }
         </style>
     </head>
     <body>
+       
         <div class="login-page">        	
             <div class="form">
-            	<p>UNISAL - Pós Desenvolvimento Web e Mobile</p>
+
+                <h3>Login Webflix</h3>
                 <form action="login" method="post">
-				    <input type="submit" value="Login" />
-				</form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Login" name="login" class="form-control" required="required" maxlength="30"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Senha" name="senha" class="form-control" required="required"maxlength="30" />
+                    </div>
+                    <input type="submit" value="Login" />
+                   
+		</form>
+                
+                 <a href="" class="btn btn-primary btn-xs" data-target ="#CnfAdicionarUsuario" data-toggle="modal">Cadastrar</a>
+                
+                     <c:if test="${not empty mensagem}">
+                          <p>${mensagem}</p>
+                      </c:if>
+
+               
             </div>
-        </div>
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+</div>
+        
+  <!--  Adicionar Ususario -->
+                <div class="modal" tabindex="-1" id="CnfAdicionarUsuario" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicionar Usuário</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                              <div>
+                                    <form class="form-group" action="salvarUsuario" method="post">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Nome" name="nome" class="form-control" required="required" maxlength="100"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" placeholder="E-mail" name="email" class="form-control" required="required" maxlength="50"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Login" name="login" class="form-control" required="required" maxlength="30"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Senha" name="senha" class="form-control" required="required"maxlength="30" />
+                                        </div>
+                                        <br/>
+                                                <button type="submit" class="btn btn-success">Salvar</button>
+                                    </form>
+                                </div>
+                                    <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <!--  FIM editar Usuario--> 
+            
+            
+
+ <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+ 
+     
+    <link  href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet" />
+    <link href="/static/css/bootstrap-carousel.css" rel="stylesheet" type="text/css"/>
+    
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script  src="<c:url value="/static/js/bootstrap.min.js"/>" ></script>
+    <script  src="<c:url value="/static/js/jquery-3.3.1.min.js"/>" ></script>
   </body>
 </html>

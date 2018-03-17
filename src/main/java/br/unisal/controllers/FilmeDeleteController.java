@@ -53,7 +53,7 @@ public class FilmeDeleteController extends HttpServlet {
             System.out.println(e.toString());
         }
 
-        req.setAttribute("filme", filmes);
+        req.setAttribute("filmes", filmes);
         req.getRequestDispatcher(Constantes.raizPages + "filme.jsp").forward(req, resp);
     }
 

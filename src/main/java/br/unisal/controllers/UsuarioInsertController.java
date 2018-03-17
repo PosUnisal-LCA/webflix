@@ -1,5 +1,6 @@
 package br.unisal.controllers;
 
+import br.unisal.dao.FilmeDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.unisal.dao.UsuarioDAO;
+import br.unisal.model.Filme;
 import br.unisal.model.Usuario;
 import br.unisal.util.Constantes;
 
@@ -24,10 +26,14 @@ public class UsuarioInsertController extends HttpServlet{
 	private static final long serialVersionUID = 2380365497770693025L;
 	
 	private static final UsuarioDAO USUARIO_DAO = UsuarioDAO.getInstance();
+        
+         private static final FilmeDAO FILME_DAO = FilmeDAO.getInstance();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+                boolean login = false;
+                String mensagem = "";
+		List<Filme> filmes = new ArrayList<>();
 		Usuario usuario = new Usuario(req.getParameter("nome"), 
 				req.getParameter("email"), 
 				req.getParameter("login"), 
@@ -36,21 +42,30 @@ public class UsuarioInsertController extends HttpServlet{
 		List<Usuario> usuarios = new ArrayList<>();
 		
 		try {
-			USUARIO_DAO.insert(usuario);
+			login = USUARIO_DAO.insertLogin(usuario);
 			
-			usuarios = USUARIO_DAO.findAll();
 		
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.toString());
 		}
-				
-		req.setAttribute("usuarios", usuarios);
-		req.getRequestDispatcher(Constantes.raizPages + "addUser.jsp").forward(req, resp);
+                if (login){
+                try {			
+                    filmes = FILME_DAO.findAll();
+                                
+                    req.setAttribute("filmes", filmes);
+                    req.getRequestDispatcher(Constantes.raizPages + "inicio.jsp").forward(req, resp);
+
+                    } catch (ClassNotFoundException | SQLException e) {
+                            System.out.println(e.toString());
+                    }
+                }
+                else{
+
+		 mensagem = "Login não disponível";
+                 req.setAttribute("mensagem", mensagem);
+                 req.getRequestDispatcher(Constantes.raiz + "index.jsp").forward(req, resp);
+                }
 	}
 
-    @Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.getRequestDispatcher(Constantes.raizPages + "addUser.jsp").forward(req, resp);
-	}
-
+  
 }

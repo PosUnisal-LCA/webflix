@@ -57,8 +57,25 @@ public class FilmeUpdateController extends HttpServlet {
             System.out.println(e.toString());
         }
 
-        req.setAttribute("filme", filmes);
+        req.setAttribute("filmes", filmes);
         req.getRequestDispatcher(Constantes.raizPages + "filme.jsp").forward(req, resp);
     }
+    
+           
+        @Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+		List<Filme> filmes = new ArrayList<>();
+		
+		try {			
+			filmes = FILME_DAO.findAll();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e.toString());
+		}
+
+		req.setAttribute("filmes", filmes);
+		req.getRequestDispatcher(Constantes.raizPages + "filme.jsp").forward(req, resp);
+	}
+    
+    
 
 }

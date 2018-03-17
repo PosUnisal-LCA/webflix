@@ -1,11 +1,13 @@
 br\unisal\util\PropertyUtil.class
 br\unisal\dao\FilmeDAO.class
+br\unisal\controllers\FilmeDeleteController.class
 br\unisal\controllers\UsuarioListController.class
 br\unisal\controllers\ApplicationFilter.class
 br\unisal\util\DbUtil.class
 br\unisal\controllers\LogoutController.class
 br\unisal\util\GsonSingleton.class
 br\unisal\dao\GenericDAO.class
+br\unisal\controllers\UsuarioDeleteController.class
 br\unisal\dao\teste.class
 br\unisal\interfaces\DAOInterface.class
 br\unisal\controllers\LoginController.class
@@ -15,6 +17,8 @@ br\unisal\dao\UsuarioDAO.class
 br\unisal\controllers\FilmeController.class
 br\unisal\model\Filme.class
 br\unisal\dao\FilmeMainTestDB.class
+br\unisal\controllers\FilmeUpdateController.class
+br\unisal\controllers\UsuarioUpdateController.class
 br\unisal\util\Util.class
 br\unisal\model\Genero.class
 br\unisal\controllers\FilmeListController.class

@@ -8,6 +8,7 @@ C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\ApplicationFilter.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\util\GsonSingleton.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\dao\ConnectionPool.java
+C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\UsuarioDeleteController.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\UsuarioInsertController.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\dao\UsuarioMainTestDB.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\model\Usuario.java
@@ -23,4 +24,5 @@ C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\UsuarioListController.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\util\Util.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\LoginController.java
+C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\UsuarioUpdateController.java
 C:\Users\analu\Desktop\Pos Graduaçao\Java\servlet-jsp-jstl-master\src\main\java\br\unisal\controllers\LogoutController.java
