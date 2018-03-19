@@ -287,8 +287,8 @@
 }
 </style>
 <script>
-function myFunction() {
-    document.getElementById("modalfilme").click();
+function myFunction(id) {
+    $("#modalfilme"+id).click();
 }
 </script>
 
@@ -333,7 +333,7 @@ function myFunction() {
 <c:forEach var="u" items="${filmes}">
 	<div class="movie-card" >
 		<div class="movie-header ">
-                    <img onclick="myFunction()" src="${u.imagem}" alt="${u.nome}" width="100%" height="100%"/>
+                    <img onclick="myFunction(${u.id})" src="${u.imagem}" alt="${u.nome}" width="100%" height="100%"/>
 
 		</div><!--movie-header-->
 		<div class="movie-content">
@@ -346,7 +346,7 @@ function myFunction() {
 				<div class="info-section">
 					<label>Genero</label>
 					<span>${u.genero}</span>
-                                        <button id="modalfilme" type="button" class="btn btn-warning" data-toggle="modal" data-target ="#CnfVerFilme${u.id}">Ver</button>
+                                        <button id="modalfilme${u.id}" type="button" class="btn btn-warning" data-toggle="modal" data-target ="#CnfVerFilme${u.id}">Ver</button>
 				</div><!--screen-->
                                 
 
